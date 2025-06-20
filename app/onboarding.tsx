@@ -1,19 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
+import { router } from 'expo-router';
 
-export default function Index() {
+export default function Onboarding() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Flex!</Text>
       <Text style={styles.subtitle}>
         Connect with gym partners, friends, or matches based on your fitness goals and location.
       </Text>
-      <Link href="/onboarding" asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
-      </Link>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/signup')}>
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.secondaryButton]} onPress={() => router.push('/login')}>
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -45,9 +46,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
   },
+  secondaryButton: {
+    backgroundColor: '#6366f1',
+  },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '600',
   },
-});
+}); 
